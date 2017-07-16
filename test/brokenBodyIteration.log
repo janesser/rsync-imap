@@ -1,0 +1,40 @@
+* 2836 FETCH (UID 7166 FLAGS (\Seen) INTERNALDATE "10-Jun-2011 14:52:05 +0200" RFC822.SIZE 12147646 ENVELOPE ("Fri, 10 Jun 2011 14:45:33 +0200" "BI4ThinClients" (("Jan Esser" NIL "jan" "esserjan.de")) (("Jan Esser" NIL "jan" "esserjan.de")) (("Jan Esser" NIL "jan" "esserjan.de")) ((NIL NIL "jhuebner" "zeb.de")) NIL NIL NIL "<1307709933.9833.2.camel@penelope64.MN>") BODY (("text" "plain" ("charset" "utf-8") NIL NIL "quoted-printable" 211 8)("application" "pdf" ("name" "BI4ThinClients.pdf") NIL NIL "base64" 12146548) "mixed"))
+tag OK FETCH completed.
+
+"esserjan-de.netcup-mail.de" 143 $  tag uid search HEADER Message-Id "<1307709933.9833.2.camel@penelope64.MN>"
+
+* SEARCH
+tag OK Search completed (0.020 secs).
+
+"mail.waskowski.de" 993 $  tag uid fetch 7166 BODY[1]
+
+* 2836 FETCH (UID 7166 BODY[1] {211}
+Hallo J=C3=BCrgen,
+
+anbei =C3=BCberarbeitete und korrigierte Fassung (bis einschlie=C3=9Flich S=
+eite
+45). Kannst du mir bitte sagen, ob der zeb/BL-Part jetzt zutreffend ist?
+
+Viele Gr=C3=BC=C3=9Fe,
+Jan
+)
+tag OK FETCH completed.
+
+"mail.waskowski.de" 993 $  tag uid fetch 7166 BODY[1]
+
+* 2836 FETCH (UID 7166 BODY[1] {211}
+Hallo J=C3=BCrgen,
+
+anbei =C3=BCberarbeitete und korrigierte Fassung (bis einschlie=C3=9Flich S=
+eite
+45). Kannst du mir bitte sagen, ob der zeb/BL-Part jetzt zutreffend ist?
+
+Viele Gr=C3=BC=C3=9Fe,
+Jan
+)
+tag OK FETCH completed.
+
+rsync-imap-exe: Maybe.fromJust: Nothing
+CallStack (from -prof):
+  Data.Maybe.CAF (<entire-module>)
+
