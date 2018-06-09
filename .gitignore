@@ -1,3 +1,8 @@
+# stack
 .stack-work
 *.prof
 *~
+
+# leskah stack-/cabal-mode
+dist
+.bash_history.yaml

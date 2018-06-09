@@ -68,13 +68,13 @@ rsyncImap :: Monad a => ConnectionManager a => MailboxManager a => ImapConnectio
 rsyncImap src tgt actFlags = do
   srcCon <- imapConnect src
   tgtCon <- imapConnect tgt
-  mailboxes <- imapMailboxes srcCon 
+  mailboxes <- imapMailboxes srcCon
 
   forM_ mailboxes $ imapMailboxSync srcCon tgtCon actFlags
 
   imapLogout srcCon
   imapLogout tgtCon
-  return ()  
+  return ()
 
 
 class MailboxManager a where
@@ -95,7 +95,7 @@ instance MailboxManager IO where
     createResponse <- create con $ mbName mbx
     return $ parse' parseCreateResponse createResponse
   imapMailboxSync srcCon tgtCon actFlags mbx = syncMailbox srcCon tgtCon actFlags mbx
-    
+
 
 -- | SRC select / TGT select / TGT create / SRC uidSearchAll / syncMessage
 syncMailbox :: Monad a => MailboxManager a => MessageManager a => Connection -> Connection -> [ActionFlags] -> Mailbox -> a()
@@ -104,7 +104,7 @@ syncMailbox srcCon tgtCon actFlags mbx = do
   let tgtMbxName = tgtMbName (mbDelim mbx) (mbName mbx)
   tgtMbx <- imapMailbox tgtCon $ mbx { mbName = tgtMbxName }
   let tgtExists = mbExists tgtMbx
-  
+
   unless tgtExists $ do
     if shouldCreateMailboxes actFlags
       then do
@@ -142,7 +142,7 @@ instance MessageManager IO where
   imapSearchAll con = do
     uidSearchResponse <- uidSearchAll con
     return $ parse' parseUidSearchResponse uidSearchResponse
-  imapMessageSync srcCon tgtCon actFlags tgtMbx = syncMessage  srcCon tgtCon actFlags $ mbName tgtMbx 
+  imapMessageSync srcCon tgtCon actFlags tgtMbx = syncMessage  srcCon tgtCon actFlags $ mbName tgtMbx
 
 
 -- SRC uidFetchFull / TGT uidSearchByMsgId / srcFetchBodies / tgtAppend
@@ -170,7 +170,7 @@ fetchMessageBodies :: Connection -> MessageUid -> Message -> IO Message
 fetchMessageBodies srcCon msgUid srcMsg = do
   let idxParts = zip [1..] $ mBody srcMsg
   messageParts <- mapM' idxParts $ \(i, partOrGroup) ->
-    fetchBodies srcCon msgUid (bodyNr [] i) partOrGroup 
+    fetchBodies srcCon msgUid (bodyNr [] i) partOrGroup
   return $ srcMsg { mBody = messageParts }
 
 fetchBodies :: Connection -> MessageUid -> [Int] -> MessagePartOrGroup -> IO MessagePartOrGroup
